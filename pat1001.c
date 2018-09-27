@@ -1,6 +1,7 @@
 #include <stdio.h>
 int compare(long a,long b,long c);
 int main(int argc, char const *argv[])
+{
 	long A,B,C;
 	int T,out,i=1;
 	
