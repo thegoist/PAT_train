@@ -3,27 +3,27 @@
 #include<algorithm>
 using namespace std;
 int main(){
-	char ch[55] = {0};
-	int len = 0;
-	char temp ;
-	while((scanf("%s",ch)) != EOF){
-		len = strlen(ch);
-//		printf("len %d\n", len);
-		sort(ch,ch+len);
-		if(ch[0] == '0'){
-			for(int i = 0; i < len;i++){
-				if(ch[i]!='0'){
-					temp = ch[0];
-					ch[0] = ch[i];
-					ch[i] = temp;
-					break;
-				}
+	int ch[10] = {0};
+	for(int i = 0; i < 10; i++){
+		scanf("%d",&ch[i]);
+//		printf("%d ",ch[i]);
+	}
+//	printf("\n");
+	
+	for(int i = 1; i < 10; i++){
+		if(ch[i]!=0){
+			printf("%d",i);
+			ch[i] = ch[i]-1;
+			break;
+		}
+	}
+	for(int i = 0; i < 10; i++){
+		if(ch[i]!=0){
+			for(int j = 0; j < ch[i];j++){
+				printf("%d",i);
 			}
 		}
-		for(int i = 0; i < len;i++){
-			printf("%d",ch[i] - '0');
-		}
-		printf("\n");
 	}
+	printf("\n");
 	return 0;
 }
