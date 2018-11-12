@@ -12,7 +12,7 @@ int main(){
 void func(int c1,int c2){
 	int c ,hour,min,sec;
 	int out; 
-	c = c2 - c1;
+	c = c2 - c1 + 50;//ËÄÉáÎåÈë 
 	out = c / CLK_TCK;
 //	printf("**********%f",out);
 
