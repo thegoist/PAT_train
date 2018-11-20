@@ -1,4 +1,5 @@
 //奇妙的测试点5 没过去 本题采用暴力模拟 
+//稍微改了一下，居然过了! 
 #include<iostream>
 #include<cstdio>
 #include<map>
@@ -11,7 +12,7 @@ int next_p[8][2] = {{0,1},{1,0},{0,-1},{-1,0},
 				{1,1},{1,-1},{-1,-1},{-1,1}};
 int ans_x,ans_y;
 int flag = 0,cnt = 0;
-void check(int x,int y){
+bool check(int x,int y){
 	int tx,ty;
 	for(int i = 0; i < 8 ; i++){
 		tx = x+next_p[i][0];
@@ -20,18 +21,13 @@ void check(int x,int y){
 			flag = 0;
 			continue;
 		}
-		if(abs(mp[x][y] - mp[tx][ty]) > tol ){
-			flag = 1;
-		}else{
-			flag = 0;
-			return ;
+		if(abs(mp[x][y] - mp[tx][ty]) <= tol ){
+//			flag = 1;
+			return false;
 		}
 	}
 	
-	if(flag) {
-		ans_x = x,ans_y = y,cnt++;
-//		cout<<cnt<<" "<<ans_x<<" "<<ans_y<<" "<<mp[ans_x][ans_y]<<endl;
-	}
+		return true;
 	
 }
 int main(){
@@ -45,11 +41,12 @@ int main(){
 	}
 	for(int i = 0; i < m ; i++){
 		for(int j = 0 ; j < n ; j++){
-			if(book[mp[i][j]] == 1) check(i,j);
-//			if(flag) break;
+			if(book[mp[i][j]] == 1 && check(i,j)){
+				ans_x = i,ans_y = j,cnt++;
+				
+			} 
 		}
-//		cout<<endl;
-//		if(flag) break;
+
 	}
 	if(cnt==1) cout<<"("<<ans_y+1<<", "<<ans_x+1<<"): "<<mp[ans_x][ans_y];
 	else if(cnt>1) cout<<"Not Unique";
