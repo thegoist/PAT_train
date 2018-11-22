@@ -20,7 +20,7 @@ int main(){
 	}
 	int sum = 0;
 	for(set<int>::iterator it = s.begin() ; it != s.end() ; it++){
-		cout<< *it<<endl;
+//		cout<< *it<<endl;
 		sum += *it;
 	}
 	cout<<sum<<endl;
