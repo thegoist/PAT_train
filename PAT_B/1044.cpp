@@ -54,8 +54,9 @@ void e2m(string str){
 //	cout<<"a: "<<a<<" b: "<<b<<endl;
 	a = a-1;
 	b = b-1;
-	if(a > 0) cout<<mar2[a]<<" "<<mar1[b]<<endl;
-	else cout<<mar1[b]<<endl;
+	if(a >= 0 && b > 0) cout<<mar2[a]<<" "<<mar1[b]<<endl;
+	else if(a < 0) cout<<mar1[b]<<endl;
+	else if(a >= 0 && b <= 0) cout<<mar2[a]<<endl;
 }
 int main(){
 	int n;
