@@ -40,20 +40,22 @@ void mergeSort(){
 
 bool insertSort(){
 	bool flag = false;
-	for(int i = 0 ; i < n ; i++){
+	for(int i = 1 ; i < n ; i++){
 		if(i != 1 && isSame(temp,b)){
 			flag = true;
 		}
+		
 		int t = temp[i],j = i;
-		while(j > 0 && temp[j - i] > t){
+		while(j > 0 && temp[j - 1] > t){
 			temp[j] = temp[j-1];
 			j--;
 		}
 		temp[j] = t;
-		if(flag){
+		if(flag==true){
 			return true;
 		}
 	}
+	return false;
 }
 int main(){
 	cin>>n;
@@ -67,20 +69,19 @@ int main(){
 	for(int i = 0; i < n; i++){
 		scanf("%d",&b[i]);
 	} 
-	int i = 0;
-	int j = 0;
-	for(i = n-1 ; i >= 0 && a[i]==b[i];i--);
-	for(j = 0; j < i && b[j] <= b[j + 1];j++);
-//	cout<<i<<" "<<j<<endl;
-	if(i==j){
+
+	if(insertSort()){
 		cout<<"Insertion Sort"<<endl;
-		sort(b,b+i+2);
+		
 		for(int i = 0 ; i < n; i++) {
-			cout<<b[i];
+			cout<<temp[i];
 			if(i != n-1) cout<<" ";	
 		}
 		cout<<endl;
 	}else{
+		for(int i = 0 ; i < n ; i++){
+			temp[i] = a[i];
+		}
 		cout<<"Merge Sort"<<endl;
 		mergeSort();
 	}

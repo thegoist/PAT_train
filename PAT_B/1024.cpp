@@ -7,40 +7,47 @@ using namespace std;
 int main (){
 	string line;
 	cin>>line;
-	string num;	
-	for(int i = 1 ; i < line.length() ; i++){
-		if(line[i] == 'E') break;
-		if(line[i] != '.') num+=line[i];
-	}
-	int move = 0;
-	int flag = 0;
-	for(int i = 1 ; i < line.length() ; i++){
-		if(line[i] == 'E'){
-			flag = i+1;
-//			continue;
-			i++;
-		} 
-		if(flag && line[i]!='+' &&line[i]!='-'){
-//			cout<<line[i]<<endl;
-			move = move*10 + line[i] - '0';
-		} 
+//	line = "-1.2E+10"; 
+	string num;
+	if(line[0] == '-') cout<<'-';
+	
+	int pos = 0;
+	while(line[pos] != 'E') pos++;
+	
+	int exp = 0;
+	for(int i = pos+2 ; i < line.length(); i++){
+		exp = exp*10 + line[i] - '0'; 
+	} 
+//	cout<<exp<<endl;
+	if(exp == 0){
+		for(int i = 1 ; i < pos ; i++){
+			cout<<line[i];
+		}
 	}
 	
-	if(line[flag] == '-'){
-		for(int i = 0 ; i < move ; i++){
-			num = '0'+num;
+	if(line[pos+1] == '-'){
+		cout<<"0.";
+		for(int i = 0 ; i < exp-1 ; i++){
+			cout<<'0';
 		}
-		if(line[0] == '-') num = line[0]+num;
-		for(int i = 0 ; i < num.length() ; i++){
-			if(i == 1){
-				cout<<'.';
+		cout<<line[1];
+		for(int i = 3 ; i < pos ; i++){
+			cout<<line[i];
+		}
+	}else{               //指数为正的情况 
+//		1.2334E+2
+//		123.34
+		for(int i = 1; i < pos ; i++){
+			if(line[i] == '.') continue;
+			cout<<line[i];
+			if(i == exp+2 && pos-3 != exp) cout<<'.';
+			
+		}
+		for(int i = 0 ; i < exp - pos + 3 ; i++){
+				cout<<'0';
 			}
-			cout<<num[i];
-		}
-		cout<<endl;
-	}else{
-		
 	}
+	
 	
 	
 	return 0;
